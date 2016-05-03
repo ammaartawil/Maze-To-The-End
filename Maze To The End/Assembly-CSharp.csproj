@@ -49,8 +49,11 @@
      <Compile Include="Assets\Scripts\IntVector2.cs" />
      <Compile Include="Assets\Scripts\Maze.cs" />
      <Compile Include="Assets\Scripts\MazeCell.cs" />
+     <Compile Include="Assets\Scripts\MazeCellEdge.cs" />
      <Compile Include="Assets\Scripts\MazeDirection.cs" />
      <Compile Include="Assets\Scripts\MazeDirections.cs" />
+     <Compile Include="Assets\Scripts\MazePassage.cs" />
+     <Compile Include="Assets\Scripts\MazeWall.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
