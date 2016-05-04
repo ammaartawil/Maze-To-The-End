@@ -7,9 +7,9 @@ public class Maze : MonoBehaviour {
 	public IntVector2 size;
 	public MazeCell cellPrefab;
 	private MazeCell[,] cells;
-	public float generationStepDelay;
 	public MazePassage passagePrefab;
 	public MazeWall wallPrefab;
+
 
 	void Start () {
 	
@@ -29,13 +29,11 @@ public class Maze : MonoBehaviour {
 		return coordinate.x >= 0 && coordinate.x < size.x && coordinate.z >= 0 && coordinate.z < size.z;
 	}
 
-	public IEnumerator Generate () {
-		WaitForSeconds delay = new WaitForSeconds(generationStepDelay);
+	public void Generate () {
 		cells = new MazeCell[size.x, size.z];
 		List<MazeCell> activeCells = new List<MazeCell>();
 		DoFirstGenerationStep(activeCells);
 		while (activeCells.Count > 0) {
-			yield return delay;
 			DoNextGenerationStep(activeCells);
 		}
 	}
