@@ -37,16 +37,16 @@ public class Player : MonoBehaviour {
 	}
 
 	private void Update () {
-		if (playerNumber == 1 && Input.GetKeyDown(KeyCode.UpArrow) || playerNumber == 2 && Input.GetKeyDown(KeyCode.W) ) {
+		if (playerNumber == 2 && Input.GetKeyDown(KeyCode.UpArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.W) ) {
 			Move(currentDirection);
 		}
-		else if (playerNumber == 1 && Input.GetKeyDown(KeyCode.RightArrow) || playerNumber == 2 && Input.GetKeyDown(KeyCode.D)) {
+		else if (playerNumber == 2 && Input.GetKeyDown(KeyCode.RightArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.D)) {
 			Rotate(currentDirection.GetNextClockwise());
 		}
-		else if (playerNumber == 1 && Input.GetKeyDown(KeyCode.DownArrow) || playerNumber == 2 && Input.GetKeyDown(KeyCode.S)) {
+		else if (playerNumber == 2 && Input.GetKeyDown(KeyCode.DownArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.S)) {
 			Move(currentDirection.GetOpposite());
 		}
-		else if (playerNumber == 1 && Input.GetKeyDown(KeyCode.LeftArrow) || playerNumber == 2 && Input.GetKeyDown(KeyCode.A)) {
+		else if (playerNumber == 2 && Input.GetKeyDown(KeyCode.LeftArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.A)) {
 			Rotate(currentDirection.GetNextCounterclockwise());
 		}
 	}
