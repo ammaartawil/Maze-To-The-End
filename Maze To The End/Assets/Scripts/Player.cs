@@ -2,8 +2,6 @@
 
 public class Player : MonoBehaviour {
 
-	private MazeCell currentCell;
-	private MazeDirection currentDirection;
 	public int playerNumber;
 	public Material player1Material;
 	public Material player2Material;
@@ -25,10 +23,14 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void SetLocation (MazeCell cell) {
+	/*public void SetLocation (MazeCell cell) {
 		currentCell = cell;
 		transform.localPosition = new Vector3(cell.transform.localPosition.x,
-			cell.transform.localPosition.y + 2, cell.transform.localPosition.z);
+			cell.transform.localPosition.y + 0.5f, cell.transform.localPosition.z);
+	}*/
+	public void SetStartLocation(Cell cell, int size) {
+		//transform.localPosition = new Vector3((int)UnityEngine.Random.Range (0, width), 3f, (int)UnityEngine.Random.Range (0, height));
+		transform.position = new Vector3(cell.xPos * 3, 3f, size * 3f - cell.zPos * 3);
 	}
 
 	/*private void Move (MazeDirection direction) {
@@ -45,22 +47,23 @@ public class Player : MonoBehaviour {
 		print (currentDirection);
 	}*/
 
-	private void Update () {
-		if (playerNumber == 2 && Input.GetKeyDown(KeyCode.UpArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.W) ) {
+	void Update () {
+		if (playerNumber == 2 && Input.GetKey(KeyCode.UpArrow) || playerNumber == 1 && Input.GetKey(KeyCode.W) ) {
 			//Move(currentDirection);
 			rb.transform.Translate (Vector3.forward * speed * Time.deltaTime);
 		}
-		if (playerNumber == 2 && Input.GetKeyDown(KeyCode.RightArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.D)) {
+		if (playerNumber == 2 && Input.GetKey(KeyCode.RightArrow) || playerNumber == 1 && Input.GetKey(KeyCode.D)) {
 			//Rotate(currentDirection.GetNextClockwise());
 			transform.Rotate (Vector3.up * rotateSpeed * Time.deltaTime);
 		}
-		if (playerNumber == 2 && Input.GetKeyDown(KeyCode.DownArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.S)) {
+		if (playerNumber == 2 && Input.GetKey(KeyCode.DownArrow) || playerNumber == 1 && Input.GetKey(KeyCode.S)) {
 			//Move(currentDirection.GetOpposite());
 			rb.transform.Translate (Vector3.back * speed * Time.deltaTime);
 		}
-		if (playerNumber == 2 && Input.GetKeyDown(KeyCode.LeftArrow) || playerNumber == 1 && Input.GetKeyDown(KeyCode.A)) {
+		if (playerNumber == 2 && Input.GetKey(KeyCode.LeftArrow) || playerNumber == 1 && Input.GetKey(KeyCode.A)) {
 			//Rotate(currentDirection.GetNextCounterclockwise());
 			transform.Rotate (-Vector3.up * rotateSpeed * Time.deltaTime);
 		}
+
 	}
 }

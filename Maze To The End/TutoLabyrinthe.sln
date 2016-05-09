@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{FC14BA72-7554-BBD2-21DA-9D3ED5EEEF70}") = "TutoLabyrinthe", "Assembly-CSharp.csproj", "{11CE8DCB-F3F9-43A2-1953-F4E26279FEE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11CE8DCB-F3F9-43A2-1953-F4E26279FEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CE8DCB-F3F9-43A2-1953-F4E26279FEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CE8DCB-F3F9-43A2-1953-F4E26279FEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CE8DCB-F3F9-43A2-1953-F4E26279FEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
