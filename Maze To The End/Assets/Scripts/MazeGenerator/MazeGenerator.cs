@@ -23,7 +23,6 @@ public class MazeGenerator : MonoBehaviour
     public void Init () {
 		// Random size of maze
 		size = UnityEngine.Random.Range(10, 15);
-
 		cells = new Cell[size, size];
 
 		// Random wall
@@ -154,13 +153,14 @@ public class MazeGenerator : MonoBehaviour
 		// Get a random cell
 		Cell cell = cells [(int)Random.Range (0, size), (int)Random.Range (0, size)];
 
-		//print ("Start player route find");
+		print ("Start player route find");
 
-		//List<Cell> route = mazeSearch (cell, new List<Cell> (), new List<Cell>());
+		List<Cell> route = mazeSearch (cell, new List<Cell> (), new List<Cell>());
 
 		//foreach(Cell c in route) {
 		//	print (c.xPos + " " + c.zPos);
 		//}
+		print (route.Count-1);
 
 		// Don't want to start at the end
 		if (endCell.xPos == cell.xPos && endCell.zPos == cell.zPos) {
@@ -169,8 +169,7 @@ public class MazeGenerator : MonoBehaviour
 
 		return cell;
 	}
-
-	/* Broken code
+		
 	public List<Cell> mazeSearch(Cell c, List<Cell> found, List<Cell> seen) {
 		if (seen.Contains (c)) {
 			return null;
@@ -178,34 +177,38 @@ public class MazeGenerator : MonoBehaviour
 		found.Add (c);
 		seen.Add (c);
 
-		print (c.xPos + " " + c.zPos);
-
+		//print (c.xPos + " " + c.zPos);
+		//print ("END IS " + endCell.xPos + " " + endCell.zPos);
 		if (c.xPos == endCell.xPos && c.zPos == endCell.zPos) {
 			return found;
 		}
 
-		if (!c.east && c.xPos > 0) {
-			List<Cell> seen2 = new List<Cell> (seen);
-			List<Cell> found2 = mazeSearch(cells[c.xPos - 1, c.zPos], found, seen2);
-			if (found2 != null) {
-				return found2;
-			}
-		}
-		if (!c.west && c.xPos < size-1) {
+		if (c.east && c.xPos < size-1) {
+			//print ("EAST = " + (c.xPos + 1));
 			List<Cell> seen2 = new List<Cell> (seen);
 			List<Cell> found2 = mazeSearch(cells[c.xPos + 1, c.zPos], found, seen2);
 			if (found2 != null) {
 				return found2;
 			}
+		}
+		if (c.west && c.xPos > 0) {
+			//print ("WEST = " + (c.xPos - 1));
+			List<Cell> seen2 = new List<Cell> (seen);
+			List<Cell> found2 = mazeSearch(cells[c.xPos - 1, c.zPos], found, seen2);
+			if (found2 != null) {
+				return found2;
+			}
 		}		
-		if (!c.north && c.zPos > 0) {
+		if (c.north && c.zPos > 0) {
+			//print ("NORTH = " + (c.zPos - 1));
 			List<Cell> seen2 = new List<Cell> (seen);
 			List<Cell> found2 = mazeSearch(cells[c.xPos, c.zPos - 1], found, seen2);
 			if (found2 != null) {
 				return found2;
 			}
 		}		
-		if (!c.south && c.zPos < size-1) {
+		if (c.south && c.zPos < size-1) {
+			//print ("SOUTH = " + (c.zPos + 1));
 			List<Cell> seen2 = new List<Cell> (seen);
 			List<Cell> found2 = mazeSearch(cells[c.xPos, c.zPos + 1], found, seen2);
 			if (found2 != null) {
@@ -213,7 +216,7 @@ public class MazeGenerator : MonoBehaviour
 			}
 		}
 		return null;
-	}*/
+	}
 }
 
 static class ListExtensions {
