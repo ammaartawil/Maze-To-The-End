@@ -20,17 +20,21 @@ public class GameManager : MonoBehaviour {
 
 	private void BeginGame () {
 		mazeGenerator.Init();
+
+		// Set up players
 		player1Instance = Instantiate (playerPrefab) as Player;
 		player1Instance.setPlayerNumber (1);
-		//player1Instance.SetLocation (mazeInstance.GetCell (mazeInstance.RandomCoordinates));
+		// Random start location
 		player1Instance.SetStartLocation (mazeGenerator.cells[(int)Random.Range (0, mazeGenerator.size), (int)Random.Range(0, mazeGenerator.size)], mazeGenerator.size);
+
 		player2Instance = Instantiate (playerPrefab) as Player;
 		player2Instance.setPlayerNumber (2);
-		// I feel like this is a redundant line
 		player2Instance.SetStartLocation (mazeGenerator.cells[(int)Random.Range (0, mazeGenerator.size), (int)Random.Range(0, mazeGenerator.size)], mazeGenerator.size);
+
+		// Arrange cameras
 		player1Instance.GetComponentInChildren<Camera>().rect = new Rect(0f, 0f, 0.49f, 1f);
 		player2Instance.GetComponentInChildren<Camera> ().rect = new Rect (0.51f, 0f, 0.49f, 1f);
-		mainCamera.rect = new Rect (0f, 0f, 0.49f, 1f);
+		//mainCamera.rect = new Rect (0f, 0f, 0.49f, 1f);
 	}		
 		
 	private void RestartGame () {

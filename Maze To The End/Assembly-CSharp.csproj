@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{11CE8DCB-F3F9-43A2-1953-F4E26279FEE1}</ProjectGuid>
+    <ProjectGuid>{0851EC6D-E6FC-6DF8-7C7A-3F6CAF5E9FB3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,14 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\EndCell.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator\Cell.cs" />
+     <Compile Include="Assets\Scripts\MazeGenerator\EndCell.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator\MazeGenerator.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator\Neighbours.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator\VisualCell.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\Tools\ListExtensions.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>

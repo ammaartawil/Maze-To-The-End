@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class VisualCell : MonoBehaviour 
-{
+// Allows us to access the walls of the cell and delete as appropriate
+public class VisualCell : MonoBehaviour {
     public Transform east;
     public Transform west;
     public Transform north;

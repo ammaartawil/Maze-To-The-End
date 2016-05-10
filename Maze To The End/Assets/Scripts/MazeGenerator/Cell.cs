@@ -1,13 +1,11 @@
 ﻿public class Cell 
 {
-    public bool west, north, east, south;    // Mur Ouest, Nord, Est et Sud.
-    public bool visited;                       // Permet de savoir si oui ou non la cellule à était visiter.
+    public bool west, north, east, south; // If true, there should not be a wall in that direction
+	public bool visited; // Whether we've processed this cell or not
 
-    public int xPos, zPos;                      // Position en X et en Z.
+    public int xPos, zPos; // Coordinates in the grid
     
-    // Constructeur.
-    public Cell (bool west, bool north, bool east, bool south, bool visited)
-    {
+    public Cell (bool west, bool north, bool east, bool south, bool visited) {
         this.west = west;
         this.north = north;
         this.east = east;
