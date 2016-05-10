@@ -29,17 +29,22 @@ public class Player : MonoBehaviour {
 	}
 		
 	void Update () {
-		if (playerNumber == 2 && Input.GetKey(KeyCode.UpArrow) || playerNumber == 1 && Input.GetKey(KeyCode.W) ) {
-			rb.transform.Translate (Vector3.forward * speed * Time.deltaTime);
-		}
-		if (playerNumber == 2 && Input.GetKey(KeyCode.RightArrow) || playerNumber == 1 && Input.GetKey(KeyCode.D)) {
-			transform.Rotate (Vector3.up * rotateSpeed * Time.deltaTime);
-		}
-		if (playerNumber == 2 && Input.GetKey(KeyCode.DownArrow) || playerNumber == 1 && Input.GetKey(KeyCode.S)) {
-			rb.transform.Translate (Vector3.back * speed * Time.deltaTime);
-		}
-		if (playerNumber == 2 && Input.GetKey(KeyCode.LeftArrow) || playerNumber == 1 && Input.GetKey(KeyCode.A)) {
-			transform.Rotate (-Vector3.up * rotateSpeed * Time.deltaTime);
+		if (Input.anyKey == false) {
+			rb.angularVelocity = Vector3.zero;
+			rb.velocity = Vector3.zero;
+		} else {
+			if (playerNumber == 2 && Input.GetKey (KeyCode.UpArrow) || playerNumber == 1 && Input.GetKey (KeyCode.W)) {
+				rb.transform.Translate (Vector3.forward * speed * Time.deltaTime);
+			}
+			if (playerNumber == 2 && Input.GetKey (KeyCode.RightArrow) || playerNumber == 1 && Input.GetKey (KeyCode.D)) {
+				transform.Rotate (Vector3.up * rotateSpeed * Time.deltaTime);
+			}
+			if (playerNumber == 2 && Input.GetKey (KeyCode.DownArrow) || playerNumber == 1 && Input.GetKey (KeyCode.S)) {
+				rb.transform.Translate (Vector3.back * speed * Time.deltaTime);
+			}
+			if (playerNumber == 2 && Input.GetKey (KeyCode.LeftArrow) || playerNumber == 1 && Input.GetKey (KeyCode.A)) {
+				transform.Rotate (-Vector3.up * rotateSpeed * Time.deltaTime);
+			}
 		}
 	}
 }

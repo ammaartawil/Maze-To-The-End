@@ -14,8 +14,20 @@ public class MazeGenerator : MonoBehaviour
 
 	private List<Neighbours> neighbours; // List of each cell's neighbours
 
+	// For random walls
+	public List<Material> walls;
+	private int wallNumber;
+
+	public Cell endCell;
+
     public void Init () {
+		// Random size of maze
+		size = UnityEngine.Random.Range(10, 15);
+
 		cells = new Cell[size, size];
+
+		// Random wall
+		wallNumber = UnityEngine.Random.Range(0, walls.Count-1);
 
 		// Create all the cells
         for(int i = 0; i < size; i++) {
@@ -107,7 +119,7 @@ public class MazeGenerator : MonoBehaviour
 
     void InitVisualCell () {
 		// Get a random cell to use for the end cell
-		Cell endCell = cells[(int)Random.Range (0, size), (int)Random.Range(0, size)];
+		endCell = cells[(int)Random.Range (0, size), (int)Random.Range(0, size)];
 
 		// Initialize the cells and destroy the relevant walls
 		foreach(Cell cell in cells) {
@@ -127,13 +139,83 @@ public class MazeGenerator : MonoBehaviour
             visualCellInst.east.gameObject.SetActive(!cell.east);
             visualCellInst.west.gameObject.SetActive(!cell.west);
 
+			// Colour the walls
+			visualCellInst.north.gameObject.GetComponent<Renderer> ().material = walls[wallNumber];
+			visualCellInst.south.gameObject.GetComponent<Renderer> ().material = walls[wallNumber];
+			visualCellInst.east.gameObject.GetComponent<Renderer> ().material = walls[wallNumber];
+			visualCellInst.west.gameObject.GetComponent<Renderer> ().material = walls[wallNumber];
+
 			// Give a name so we can easily tell what cell is what when debugging
             visualCellInst.transform.name = cell.xPos.ToString() + "-" + cell.zPos.ToString();
         }
     }
+
+	public Cell getPlayerStart() {
+		// Get a random cell
+		Cell cell = cells [(int)Random.Range (0, size), (int)Random.Range (0, size)];
+
+		//print ("Start player route find");
+
+		//List<Cell> route = mazeSearch (cell, new List<Cell> (), new List<Cell>());
+
+		//foreach(Cell c in route) {
+		//	print (c.xPos + " " + c.zPos);
+		//}
+
+		// Don't want to start at the end
+		if (endCell.xPos == cell.xPos && endCell.zPos == cell.zPos) {
+			return getPlayerStart ();
+		}
+
+		return cell;
+	}
+
+	/* Broken code
+	public List<Cell> mazeSearch(Cell c, List<Cell> found, List<Cell> seen) {
+		if (seen.Contains (c)) {
+			return null;
+		}
+		found.Add (c);
+		seen.Add (c);
+
+		print (c.xPos + " " + c.zPos);
+
+		if (c.xPos == endCell.xPos && c.zPos == endCell.zPos) {
+			return found;
+		}
+
+		if (!c.east && c.xPos > 0) {
+			List<Cell> seen2 = new List<Cell> (seen);
+			List<Cell> found2 = mazeSearch(cells[c.xPos - 1, c.zPos], found, seen2);
+			if (found2 != null) {
+				return found2;
+			}
+		}
+		if (!c.west && c.xPos < size-1) {
+			List<Cell> seen2 = new List<Cell> (seen);
+			List<Cell> found2 = mazeSearch(cells[c.xPos + 1, c.zPos], found, seen2);
+			if (found2 != null) {
+				return found2;
+			}
+		}		
+		if (!c.north && c.zPos > 0) {
+			List<Cell> seen2 = new List<Cell> (seen);
+			List<Cell> found2 = mazeSearch(cells[c.xPos, c.zPos - 1], found, seen2);
+			if (found2 != null) {
+				return found2;
+			}
+		}		
+		if (!c.south && c.zPos < size-1) {
+			List<Cell> seen2 = new List<Cell> (seen);
+			List<Cell> found2 = mazeSearch(cells[c.xPos, c.zPos + 1], found, seen2);
+			if (found2 != null) {
+				return found2;
+			}
+		}
+		return null;
+	}*/
 }
 
-// Based on http://stackoverflow.com/questions/273313/randomize-a-listt
 static class ListExtensions {
 
 	public static IList<T> Shuffle<T> (this IList<T> list) { 
