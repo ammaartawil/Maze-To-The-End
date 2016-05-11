@@ -33,13 +33,24 @@ public class GameManager : MonoBehaviour {
 		// Set up players
 		player1Instance = Instantiate (playerPrefab) as Player;
 		player1Instance.setPlayerNumber (1);
-		// Random start location
-		player1Instance.SetStartLocation (mazeGenerator.getPlayerStart(), mazeGenerator.size);
-
 		player2Instance = Instantiate (playerPrefab) as Player;
 		player2Instance.setPlayerNumber (2);
-		player2Instance.SetStartLocation (mazeGenerator.getPlayerStart(), mazeGenerator.size);
 
+
+		// Random start location
+		Cell player1Start = mazeGenerator.getPlayerStart(1);
+		Cell player2Start;
+		if (player1Wins - player2Wins == 0) {
+			player2Start = mazeGenerator.getPlayerStart (2);
+		} else if (player1Wins > player2Wins) {
+			player2Start = mazeGenerator.getPlayerStart (2);
+		} else {
+			player2Start = player1Start;
+			player1Start = mazeGenerator.getPlayerStart (2);
+		}
+
+		player1Instance.SetStartLocation (player1Start, mazeGenerator.size);
+		player2Instance.SetStartLocation (player2Start, mazeGenerator.size);
 		// Arrange cameras
 		player1Instance.GetComponentInChildren<Camera>().rect = new Rect(0f, 0f, 0.49f, 1f);
 		player2Instance.GetComponentInChildren<Camera> ().rect = new Rect (0.51f, 0f, 0.49f, 1f);
@@ -64,6 +75,7 @@ public class GameManager : MonoBehaviour {
 			Destroy (player2Instance.gameObject);
 		}
 		text.GetComponent<Text>().text = "";
+		mazeGenerator.playerDistance = 0;
 
 		BeginGame();
 	}
@@ -74,7 +86,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	IEnumerator StartGame() {
-		yield return new WaitForSeconds(10);
+		yield return new WaitForSeconds(6);
 		BeginGame ();
 	}
 }
